@@ -1,0 +1,47 @@
+[
+   {
+        "title": "Harry Potter and the Sorcerers Stone",
+        "author_first_name": "J.K.",
+        "author_last_name": "Rowling",
+        "publisher": "Scholastic",
+        "page_count": 303,
+        "reviews": 0,
+        "rating": 0
+   }, 
+   {
+      "title": "Harry Potter and the Chamber of Secrets",
+      "author_first_name": "J.K.",
+      "author_last_name": "Rowling",
+      "publisher": "Scholastic",
+      "page_count": 341,
+      "reviews": 0,
+      "rating": 0
+   },
+   {
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "author_first_name": "J.K.",
+      "author_last_name": "Rowling",
+      "publisher": "Scholastic",
+      "page_count": 435,
+      "reviews": 0,
+      "rating": 0
+   },
+   {
+      "title": "Harry Potter and the Goblet of Fire",
+      "author_first_name": "J.K.",
+      "author_last_name": "Rowling",
+      "publisher": "Scholastic",
+      "page_count": 734,
+      "reviews": 0,
+      "rating": 0
+   },
+   {
+      "title": "The Witcher: The Last Wish",
+      "author_first_name": "Andrzej",
+      "author_last_name": "Sapkowski",
+      "publisher": "Orbit",
+      "page_count": 320,
+      "reviews": 0,
+      "rating": 0
+   }
+]
