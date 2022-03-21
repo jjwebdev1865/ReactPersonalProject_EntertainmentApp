@@ -80,15 +80,6 @@ export default class Books extends React.Component {
             if (this.state.reviewTitle === book_list[i]["title"]) {
                 book_list[i]["reviews"] = book_list[i]["reviews"] + 1;
                 book_list[i]["rating"].push(parseInt(event.target.reviewRating.value))
-                // console.log(book_list[i]["rating"])
-                // let sum = 0
-                // for (let j = 0; j < book_list[i]["rating"].length; j++) {
-                //     sum = sum + book_list[i]["rating"][j]
-                // }
-                // console.log(sum)
-                // let aveRate = parseFloat(sum / parseInt(book_list[i]["reviews"]))
-                // console.log(aveRate)
-                // book_list[i]["rating"] = aveRate;
             }
         }
         console.log(book_list);
