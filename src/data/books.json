@@ -6,7 +6,7 @@
         "publisher": "Scholastic",
         "page_count": 303,
         "reviews": 0,
-        "rating": 0
+        "rating": []
    }, 
    {
       "title": "Harry Potter and the Chamber of Secrets",
@@ -15,7 +15,7 @@
       "publisher": "Scholastic",
       "page_count": 341,
       "reviews": 0,
-      "rating": 0
+      "rating": []
    },
    {
       "title": "Harry Potter and the Prisoner of Azkaban",
@@ -24,7 +24,7 @@
       "publisher": "Scholastic",
       "page_count": 435,
       "reviews": 0,
-      "rating": 0
+      "rating": []
    },
    {
       "title": "Harry Potter and the Goblet of Fire",
@@ -33,7 +33,7 @@
       "publisher": "Scholastic",
       "page_count": 734,
       "reviews": 0,
-      "rating": 0
+      "rating": []
    },
    {
       "title": "The Witcher: The Last Wish",
@@ -42,6 +42,6 @@
       "publisher": "Orbit",
       "page_count": 320,
       "reviews": 0,
-      "rating": 0
+      "rating": []
    }
 ]

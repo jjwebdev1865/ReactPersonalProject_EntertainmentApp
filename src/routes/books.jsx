@@ -6,8 +6,7 @@ import TableHeader from '../components/table/TableHeader';
 import '../static/pageStyles.css';
 import jsonData from '../data/books.json';
 import TableBody from '../components/table/TableBody';
-import Modal from '../components/Modal';
-import Modal1 from '../components/table/Modal1';
+import Modal from '../components/table/Modal';
 
 
 export default class Books extends React.Component {
@@ -54,7 +53,6 @@ export default class Books extends React.Component {
     };
 
     handleContentData = () => {
-        console.log("in handle content data");
         let content_data = [];
         for (let i = 0; i < this.state.books.length; i++) {
             let temp_array = [];
@@ -76,10 +74,21 @@ export default class Books extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log(event.target.reviewRating.value)
         let book_list = [...this.state.books];
         for (let i = 0; i < book_list.length; i++) {
             if (this.state.reviewTitle === book_list[i]["title"]) {
                 book_list[i]["reviews"] = book_list[i]["reviews"] + 1;
+                book_list[i]["rating"].push(parseInt(event.target.reviewRating.value))
+                // console.log(book_list[i]["rating"])
+                // let sum = 0
+                // for (let j = 0; j < book_list[i]["rating"].length; j++) {
+                //     sum = sum + book_list[i]["rating"][j]
+                // }
+                // console.log(sum)
+                // let aveRate = parseFloat(sum / parseInt(book_list[i]["reviews"]))
+                // console.log(aveRate)
+                // book_list[i]["rating"] = aveRate;
             }
         }
         console.log(book_list);
@@ -110,7 +119,7 @@ export default class Books extends React.Component {
                         submit={this.handleSubmit}
                         titles={book_titles}
                     /> */}
-                    <Modal1 show={modal_status} 
+                    <Modal show={modal_status} 
                         title="Add a Review" 
                         type="Book"
                         close={this.toggle} 

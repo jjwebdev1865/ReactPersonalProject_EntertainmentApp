@@ -11,9 +11,27 @@ export default class TableBody extends React.Component {
                     return (
                         <tr key={this.props.type + index}>
                             {item.map((test, index) => {
-                                return (
-                                    <td key={item[0]+"key"+index}>{test}</td>
-                                )
+                                let ans = Array.isArray(test)
+                                if (ans === true) {
+                                    if (test.length === 0) {
+                                        return (
+                                            <td key={item[0]+"key"+index}>{test.length}</td>
+                                        )
+                                    } else {
+                                        let sum = 0;
+                                        for (let j = 0; j < test.length; j++) {
+                                            sum = sum + test[j]
+                                        }
+                                        let aveRate = parseFloat(sum / test.length).toFixed(2)
+                                        return (
+                                            <td key={item[0]+"key"+index}>{aveRate}</td>
+                                        )
+                                    }
+                                } else {
+                                    return (
+                                        <td key={item[0]+"key"+index}>{test}</td>
+                                    )
+                                }
                             })}
                         </tr>   
                     )
