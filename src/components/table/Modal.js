@@ -1,14 +1,7 @@
 import React from 'react';
+import '../../static/modal.scss';
 
 export default class Modal1 extends React.Component {
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         title: "",
-    //         rating: "0"
-    //     }
-    // }
 
     render() {
         return (
@@ -41,8 +34,6 @@ export default class Modal1 extends React.Component {
                             <footer className='modal-footer'>
                                 <input type="button" onClick={this.props.close} value="Cancel" />
                                 <input className='submit' type='submit' value="SUBMIT" />
-                                {/* <button className='modal-close' type='button' onClick={this.props.close}>Cancel</button> */}
-                                {/* <button className='submit' onClick={this.props.submit(reviewObject)}>Submit</button> */}
                             </footer>
                         </form>
                     </main>
