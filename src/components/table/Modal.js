@@ -4,6 +4,7 @@ import '../../static/modal.scss';
 export default class Modal1 extends React.Component {
 
     render() {
+        // console.log(this.props.show)
         return (
             <>
             {this.props.show ? 
