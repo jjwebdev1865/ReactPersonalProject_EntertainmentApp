@@ -125,7 +125,6 @@ export default class Books extends React.Component {
             <div>
                 <Header />
                 <NavBar />
-                <hr />
                 <h2>Books!</h2>
                 <br />
                 <div className='action-bar'>
