@@ -5,6 +5,7 @@ import TableHeader from '../components/table/TableHeader';
 import jsonData from '../data/books.json';
 import TableBody from '../components/table/TableBody';
 import Modal from '../components/table/Modal';
+import AddBookModal from '../components/AddBookModal'
 import SearchBar from '../components/SearchBar';
 
 import '../static/pageStyles.css';
@@ -20,16 +21,34 @@ export default class Books extends React.Component {
             tableContent: [],
             bookTitles:[],
             modal_status: false,
+            modal_status_addBook: false,
             reviewTitle: "",
             reviewRating: "0",
             searchTitleField: "",
             searchPublisherField: "",
-            searchFieldType: ""
+            searchFieldType: "",
+            addBookTitle: "",
+            addBookAuthorFName: "",
+            addBookAuthorLName: "",
+            addBookPublisher: "",
+            addBookPageCount: "",
         }
     }
 
-    toggle = (status) => (event) => {
-        this.setState({modal_status: status});
+    toggle = (status, type) => () => {
+        if (type === "review") {
+            this.setState({modal_status: status});
+        } else if (type === "add") {
+            console.log("adding book");
+            
+            this.setState({addBookTitle: ""});
+            this.setState({addBookAuthorFName: ""});
+            this.setState({addBookAuthorLName: ""});
+            this.setState({addBookPublisher: ""});
+            this.setState({addBookPageCount: ""});
+            this.setState({modal_status_addBook: status});
+        }
+        
     }
 
     componentDidMount() {
@@ -89,7 +108,7 @@ export default class Books extends React.Component {
         })
     };
 
-    handleSubmit = (event) => {
+    handleReviewSubmit = (event) => {
         event.preventDefault();
         let book_list = [...this.state.books];
         for (let i = 0; i < book_list.length; i++) {
@@ -100,7 +119,24 @@ export default class Books extends React.Component {
         }
         this.handleFilteredContentData();
         this.setState({books: book_list});
-        this.toggle();
+        this.toggle(false, "review");
+    }
+
+    handleAddSubmit = (event) => {
+        event.preventDefault();
+        console.log("in handleAddSubmit");
+        // let book_list = [...this.state.books];
+        // console.log(book_list)
+        const { addBookTitle, addBookAuthorFName, addBookAuthorLName, addBookPublisher, addBookPageCount } = this.state;
+        // if (addBookTitle !== "" && addBookAuthorFName !== "" && addBookAuthorLName !== "" 
+        //             && addBookPublisher !== "" && addBookPageCount !== "") {
+            if (addBookTitle !== "" && addBookAuthorFName !== "") {
+            console.log('valid scenario');
+            this.toggle(false, "add")
+        } else {
+            console.log("not valid")
+        }
+        
     }
 
     onSearchChange = (searchType) => (event) => {
@@ -119,8 +155,9 @@ export default class Books extends React.Component {
       }
 
     render() {
-        const { bookTitles,  tableHeaders, modal_status, searchTitleField} = this.state;
+        const { bookTitles,  tableHeaders, modal_status, modal_status_addBook, searchTitleField} = this.state;
         const filteredBooks = this.handleFilteredContentData(searchTitleField);
+        console.log(this.state.modal_status_addBook)
         return(
             <div>
                 <Header />
@@ -132,14 +169,28 @@ export default class Books extends React.Component {
                         type="button" 
                         value="ADD BOOK REVIEW" 
                         className='clickme' 
-                        onClick={this.toggle(true)}
+                        onClick={this.toggle(true, "review")}
                     />
                     <Modal show={modal_status} 
                         title="Add a Review" 
                         type="Book"
-                        close={this.toggle(false)} 
-                        submit={this.handleSubmit}
+                        close={this.toggle(false, "review")} 
+                        submit={this.handleReviewSubmit}
                         titles={bookTitles}
+                        changeHandler={this.changeHandler}
+                    />
+                    <input 
+                        type="button"
+                        value="ADD BOOK"
+                        className='clickme'
+                        onClick={this.toggle(true, "add")}
+                    />
+                    <AddBookModal 
+                        show={modal_status_addBook} 
+                        title="Add Book to Collection"
+                        submit={this.handleAddSubmit}
+                        type="Book"
+                        close={this.toggle(false, "add")} 
                         changeHandler={this.changeHandler}
                     />
   

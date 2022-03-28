@@ -27,7 +27,6 @@ export default class Movies extends React.Component {
             <div>
                 <Header />
                 <NavBar />
-                <hr />
                 <h2>Movies!</h2>
                 
                 <table>

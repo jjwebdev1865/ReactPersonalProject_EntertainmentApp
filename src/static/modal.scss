@@ -11,7 +11,8 @@
     align-items: center;
   
     .modal {
-      width: 30vw;
+      // width: 30vw;
+      width: 30%;
       height: auto;
       background-color: #fff;
       padding: 2rem;
@@ -50,6 +51,17 @@
       &_content {
         border-bottom: 1px solid #dddddd;
         padding: 2rem 0;
+        div {
+          margin-top: 5px;
+        }
+        label {
+          font-weight: bold;
+        }
+        input, select {
+          margin-right: 25%;
+          float: right;
+          width: 45%;
+        }
       }
   
       &_footer {
