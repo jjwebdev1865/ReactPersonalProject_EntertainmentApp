@@ -1,10 +1,11 @@
 import React from 'react';
+
 import NavBar from '../components/NavBar';
 import Header from '../components/Header';
 import TableHeader from '../components/table/TableHeader';
 import jsonData from '../data/books.json';
 import TableBody from '../components/table/TableBody';
-import Modal from '../components/table/Modal';
+import Modal from '../components/Modal';
 import AddBookModal from '../components/AddBookModal'
 import SearchBar from '../components/SearchBar';
 
@@ -40,29 +41,28 @@ export default class Books extends React.Component {
             this.setState({modal_status: status});
         } else if (type === "add") {
             console.log("adding book");
-            
-            this.setState({addBookTitle: ""});
-            this.setState({addBookAuthorFName: ""});
-            this.setState({addBookAuthorLName: ""});
-            this.setState({addBookPublisher: ""});
-            this.setState({addBookPageCount: ""});
             this.setState({modal_status_addBook: status});
         }
-        
+    }
+
+    getContentData(data) {
+        let content_data = [];
+        for (let i = 0; i < data.length; i++) {
+            let temp_array = [];
+            for (const [key, value] of Object.entries(data[i])) {
+                temp_array.push(value);
+            }
+            content_data.push(temp_array);
+        }
+        const alpha_content_data = [].concat(content_data)
+            .sort((a,b) => a[0] > b[0] ? 1 : -1)
+        return alpha_content_data;
     }
 
     componentDidMount() {
         const loadData = [...jsonData];
         this.setState({books: loadData});
-
-        let content_data = [];
-        for (let i = 0; i < jsonData.length; i++) {
-            let temp_array = [];
-            for (const [key, value] of Object.entries(jsonData[i])) {
-                temp_array.push(value);
-            }
-            content_data.push(temp_array);
-        }
+        const content_data = this.getContentData(jsonData);
 
         let title_options = ["Please Select a Book Title"];
         for (let i = 0; i < jsonData.length; i++) {
@@ -89,15 +89,8 @@ export default class Books extends React.Component {
         const filteredBooks = this.state.tableContent.filter((tempBook) => {
             return tempBook[searchFieldArray[1]].toLowerCase().includes(searchFieldArray[0]);
           });
-          let content_data = [];
-          for (let i = 0; i < filteredBooks.length; i++) {
-            let temp_array = [];
-            for (const [key, value] of Object.entries(filteredBooks[i])) {
-                temp_array.push(value);
-            }
-            content_data.push(temp_array);
-          }
-          return content_data
+        let content_data = this.getContentData(filteredBooks);
+        return content_data;
     }
 
     changeHandler = (event) => {
@@ -122,21 +115,29 @@ export default class Books extends React.Component {
         this.toggle(false, "review");
     }
 
-    handleAddSubmit = (event) => {
+    handleAddSubmit = (status) => (event) => {
         event.preventDefault();
-        console.log("in handleAddSubmit");
-        // let book_list = [...this.state.books];
-        // console.log(book_list)
-        const { addBookTitle, addBookAuthorFName, addBookAuthorLName, addBookPublisher, addBookPageCount } = this.state;
-        // if (addBookTitle !== "" && addBookAuthorFName !== "" && addBookAuthorLName !== "" 
-        //             && addBookPublisher !== "" && addBookPageCount !== "") {
-            if (addBookTitle !== "" && addBookAuthorFName !== "") {
-            console.log('valid scenario');
-            this.toggle(false, "add")
-        } else {
-            console.log("not valid")
+        if (status === true) {
+            let book_list = [...this.state.books];
+            const bookObject = {
+                title: this.state.addBookTitle,
+                author_first_name: this.state.addBookAuthorFName,
+                author_last_name: this.state.addBookAuthorLName,
+                publisher: this.state.addBookPublisher,
+                page_count: this.state.addBookPageCount,
+                reviews: 0,
+                rating: []
+            };
+            book_list.push(bookObject);
+            const content_data = this.getContentData(book_list);
+            console.log(book_list);
+            console.log(content_data)
+
+            this.setState({modal_status_addBook: false});
+            this.setState({books: book_list});
+            this.setState({tableContent: content_data});
+
         }
-        
     }
 
     onSearchChange = (searchType) => (event) => {
@@ -157,7 +158,6 @@ export default class Books extends React.Component {
     render() {
         const { bookTitles,  tableHeaders, modal_status, modal_status_addBook, searchTitleField} = this.state;
         const filteredBooks = this.handleFilteredContentData(searchTitleField);
-        console.log(this.state.modal_status_addBook)
         return(
             <div>
                 <Header />
@@ -188,7 +188,8 @@ export default class Books extends React.Component {
                     <AddBookModal 
                         show={modal_status_addBook} 
                         title="Add Book to Collection"
-                        submit={this.handleAddSubmit}
+                        // submit={this.handleAddSubmit(true)}
+                        submit={this.handleAddSubmit(true)}
                         type="Book"
                         close={this.toggle(false, "add")} 
                         changeHandler={this.changeHandler}
@@ -205,7 +206,7 @@ export default class Books extends React.Component {
                         placeholderTitle='Search Book by Title...'
                         placeholderPublisher='Search Book by Publisher...'
                     />
-                    <table className="bordered">
+                    <table className="bordered" >
                         <TableHeader headers={tableHeaders} />
                         <TableBody content={filteredBooks} type="book" />
                     </table>

@@ -38,17 +38,35 @@ export default class Modal1 extends React.Component {
                                 
                                 <div>
                                     <label htmlFor='reviewTitle'>Author Last Name</label>
-                                    <input type="text" placeholder="Please enter author last name..."/>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Please enter author last name..."
+                                        id='addBookAuthorLName'
+                                        name='addBookAuthorLName'
+                                        onChange={changeHandler}
+                                    />
                                 </div>
 
                                 <div>
                                     <label htmlFor='reviewTitle'>Publisher</label>
-                                    <input type="text" placeholder="Please enter publisher name..."/>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Please enter publisher name..."
+                                        id='addBookPublisher'
+                                        name='addBookPublisher'
+                                        onChange={changeHandler}                                        
+                                    />
                                 </div>
                                 
                                 <div>
                                     <label htmlFor='reviewTitle'>Page Count</label>
-                                    <input type="text" placeholder="Please enter page count..."/>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Please enter page count..."
+                                        id='addBookPageCount'
+                                        name='addBookPageCount'
+                                        onChange={changeHandler}                                           
+                                    />
                                 </div>
                             </form>
                             
