@@ -1,7 +1,8 @@
 table {
     border-collapse: separate !important;
     border-spacing: 0;
-    margin: 30px;
+    margin: 25px auto;
+    /* margin: 30px; */
 }
 .bordered {
     border: solid #ccc 1px;

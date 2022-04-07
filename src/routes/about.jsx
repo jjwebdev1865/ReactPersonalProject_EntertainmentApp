@@ -14,7 +14,6 @@ export default function About() {
             <p style={{textAlign: 'center'}}>
                 This page is pulling from a json file and *currently in progress* is dynamically keeping it up to date with reviews and additions. <br />
                 This page is using the standard state object and not the UseState library provided by react. <br />
-                This page will have a Add Book Review and Add Book buttons.
             </p>
         </div>
     );

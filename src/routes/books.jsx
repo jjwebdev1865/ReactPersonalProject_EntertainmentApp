@@ -21,29 +21,29 @@ export default class Books extends React.Component {
             tableHeaders: [],
             tableContent: [],
             bookTitles:[],
-            modal_status: false,
-            modal_status_addBook: false,
-            reviewTitle: "",
-            reviewRating: "0",
+            // modal_status: false,
+            // modal_status_addBook: false,
+            // reviewTitle: "",
+            // reviewRating: "0",
             searchTitleField: "",
             searchPublisherField: "",
             searchFieldType: "",
-            addBookTitle: "",
-            addBookAuthorFName: "",
-            addBookAuthorLName: "",
-            addBookPublisher: "",
-            addBookPageCount: "",
+            // addBookTitle: "",
+            // addBookAuthorFName: "",
+            // addBookAuthorLName: "",
+            // addBookPublisher: "",
+            // addBookPageCount: "",
         }
     }
 
-    toggle = (status, type) => () => {
-        if (type === "review") {
-            this.setState({modal_status: status});
-        } else if (type === "add") {
-            console.log("adding book");
-            this.setState({modal_status_addBook: status});
-        }
-    }
+    // toggle = (status, type) => () => {
+    //     if (type === "review") {
+    //         this.setState({modal_status: status});
+    //     } else if (type === "add") {
+    //         console.log("adding book");
+    //         this.setState({modal_status_addBook: status});
+    //     }
+    // }
 
     getContentData(data) {
         let content_data = [];
@@ -101,44 +101,42 @@ export default class Books extends React.Component {
         })
     };
 
-    handleReviewSubmit = (event) => {
-        event.preventDefault();
-        let book_list = [...this.state.books];
-        for (let i = 0; i < book_list.length; i++) {
-            if (this.state.reviewTitle === book_list[i]["title"]) {
-                book_list[i]["reviews"] = book_list[i]["reviews"] + 1;
-                book_list[i]["rating"].push(parseInt(event.target.reviewRating.value))
-            }
-        }
-        this.handleFilteredContentData();
-        this.setState({books: book_list});
-        this.toggle(false, "review");
-    }
+    // handleReviewSubmit = (event) => {
+    //     event.preventDefault();
+    //     let book_list = [...this.state.books];
+    //     for (let i = 0; i < book_list.length; i++) {
+    //         if (this.state.reviewTitle === book_list[i]["title"]) {
+    //             book_list[i]["reviews"] = book_list[i]["reviews"] + 1;
+    //             book_list[i]["rating"].push(parseInt(event.target.reviewRating.value))
+    //         }
+    //     }
+    //     this.handleFilteredContentData();
+    //     this.setState({books: book_list});
+    //     this.toggle(false, "review");
+    // }
 
-    handleAddSubmit = (status) => (event) => {
-        event.preventDefault();
-        if (status === true) {
-            let book_list = [...this.state.books];
-            const bookObject = {
-                title: this.state.addBookTitle,
-                author_first_name: this.state.addBookAuthorFName,
-                author_last_name: this.state.addBookAuthorLName,
-                publisher: this.state.addBookPublisher,
-                page_count: this.state.addBookPageCount,
-                reviews: 0,
-                rating: []
-            };
-            book_list.push(bookObject);
-            const content_data = this.getContentData(book_list);
-            console.log(book_list);
-            console.log(content_data)
+    // handleAddSubmit = (status) => (event) => {
+    //     event.preventDefault();
+    //     if (status === true) {
+    //         let book_list = [...this.state.books];
+    //         const bookObject = {
+    //             title: this.state.addBookTitle,
+    //             author_first_name: this.state.addBookAuthorFName,
+    //             author_last_name: this.state.addBookAuthorLName,
+    //             publisher: this.state.addBookPublisher,
+    //             page_count: this.state.addBookPageCount,
+    //             reviews: 0,
+    //             rating: []
+    //         };
+    //         book_list.push(bookObject);
+    //         const content_data = this.getContentData(book_list);
 
-            this.setState({modal_status_addBook: false});
-            this.setState({books: book_list});
-            this.setState({tableContent: content_data});
+    //         this.setState({modal_status_addBook: false});
+    //         this.setState({books: book_list});
+    //         this.setState({tableContent: content_data});
 
-        }
-    }
+    //     }
+    // }
 
     onSearchChange = (searchType) => (event) => {
         let searchField = event.target.value.toLowerCase();
@@ -156,16 +154,22 @@ export default class Books extends React.Component {
       }
 
     render() {
-        const { bookTitles,  tableHeaders, modal_status, modal_status_addBook, searchTitleField} = this.state;
+        const { tableHeaders, searchTitleField} = this.state;
         const filteredBooks = this.handleFilteredContentData(searchTitleField);
         return(
             <div>
                 <Header />
                 <NavBar />
                 <h2>Books!</h2>
-                <br />
-                <div className='action-bar'>
-                    <input 
+                <p>
+                    This page discusses books that I have read and finished after I started this page. I have long been a Harry Potter fan and love reading the books, <br />
+                    which is normally triggered around Christmas time. Fantasy is my favorite genre, as you can see by the current list of books. <br/>
+                    I have also started diving into some non-fiction books as well as spirituality, personal growth, and personal finance.
+                </p>
+                {/* <br /> */}
+                {/* <div className='action-bar'> */}
+                    {/* TODO: Remove Later */}
+                    {/* <input 
                         type="button" 
                         value="ADD BOOK REVIEW" 
                         className='clickme' 
@@ -178,8 +182,8 @@ export default class Books extends React.Component {
                         submit={this.handleReviewSubmit}
                         titles={bookTitles}
                         changeHandler={this.changeHandler}
-                    />
-                    <input 
+                    /> */}
+                    {/* <input 
                         type="button"
                         value="ADD BOOK"
                         className='clickme'
@@ -188,17 +192,16 @@ export default class Books extends React.Component {
                     <AddBookModal 
                         show={modal_status_addBook} 
                         title="Add Book to Collection"
-                        // submit={this.handleAddSubmit(true)}
                         submit={this.handleAddSubmit(true)}
                         type="Book"
                         close={this.toggle(false, "add")} 
                         changeHandler={this.changeHandler}
-                    />
+                    /> */}
   
-                </div>
+                {/* </div> */}
                 <br />
                 <div>
-                    <h2>Table Actions</h2>
+                    <h2 style={{textAlign: 'center'}}>Table Actions</h2>
                     <SearchBar
                         stateStatus={this.state}
                         onChangeHandler={this.onSearchChange}
