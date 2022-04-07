@@ -7,7 +7,6 @@ export default function Shows() {
         <div>
             <Header />
             <NavBar />
-            <hr />
             <h2>TV Shows!</h2>
         </div>
     );

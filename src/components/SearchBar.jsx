@@ -1,4 +1,5 @@
 import { Component } from "react";
+import '../static/books/searchBar.css';
 
 export default class SearchBar extends Component {
 
@@ -6,8 +7,7 @@ export default class SearchBar extends Component {
         const { onChangeHandler, placeholderTitle, placeholderPublisher, type, stateStatus } = this.props
         return (
             <div className="searchBar">
-                <label htmlFor={type+"-searchBar"} >Search:</label>
-                <div>
+                <div className="booksSearchActions">
                     <input 
                         name="titleSearchBar"
                         type="search"

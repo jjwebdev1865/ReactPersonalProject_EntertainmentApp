@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../static/tableBody.css';
+import '../../static/books/tableBody.css';
 import '../../static/pageStyles.css';
 
 export default class TableBody extends React.Component {
